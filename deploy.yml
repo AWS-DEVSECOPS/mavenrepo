@@ -1,4 +1,4 @@
-- name: Deploy student app in PROD
+- name: Deploy student app in QA
   hosts: all
   become: yes
   vars:
