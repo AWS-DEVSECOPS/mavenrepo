@@ -27,7 +27,7 @@ sh 'mvn package'
 stage('Docker Build and Tag') {
 steps {
 sh 'docker build -t mavenrepo:latest .' 
-sh 'docker tag mavenrepo arjundevsecops/mavenrepo:latest
+sh 'docker tag mavenrepo arjundevsecops/mavenrepo:latest'
 }
 }
 stage('Publish image to Docker Hub') {
