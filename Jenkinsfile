@@ -18,9 +18,7 @@ checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], user
 }
 stage ('Maven_Build'){
 steps {
-sh 'mvn package'	
-sh 'docker rm -f $(docker ps -q)'
-sh 'docker rmi -f $(docker images -aq)'
+sh 'mvn package'
 
 }
 }
@@ -46,12 +44,12 @@ sh "docker run -d -p 8003:8080 arjundevsecops/mavenrepo"
 }
 }
 
-stage('Run Docker container on remote hosts') {
+/*stage('Run Docker container on remote hosts') {
 steps {
 sh "docker -H ssh://root@172.31.6.20 run -d -p 8003:8080 arjundevsecops/mavenrepo"
 }
 }
-
+*/
 }
 }	
 	
