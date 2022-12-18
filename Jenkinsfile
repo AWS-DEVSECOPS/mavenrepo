@@ -45,11 +45,16 @@ sh "docker run -d -p 8003:8080 arjundevsecops/mavenrepo"
 }
 
 	
-/*stage('Run Docker container on remote hosts') {
+stage('Run Docker container on remote hosts') {
 steps {
-sh "docker -H ssh://root@172.31.6.20 run -d -p 8003:8080 arjundevsecops/mavenrepo"
+ def get = new URL("http://172.31.29.247:8003/studentapp-2.5-SNAPSHOT/").openConnection();
+ def getRC = get.getResponseCode();
+ println(getRC);
+ if(getRC.equals(200)) {
+    println(get.getInputStream().getText()); 
+ }
 }
 }
-*/
+
  }
 }	
