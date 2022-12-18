@@ -51,17 +51,11 @@ sh "docker -H ssh://root@172.31.6.20 run -d -p 8003:8080 arjundevsecops/mavenrep
 }
 }
 */
-	 def get = new URL("http://172.31.29.247:8003/studentapp-2.5-SNAPSHOT/").openConnection();
+ def get = new URL("https://httpbin.org/get").openConnection();
  def getRC = get.getResponseCode();
  println(getRC);
  if(getRC.equals(200)) {
     println(get.getInputStream().getText()); 
  }
-}
-	 def get = new URL("https://httpbin.org/get").openConnection();
- def getRC = get.getResponseCode();
- println(getRC);
- if(getRC.equals(200)) {
-    println(get.getInputStream().getText()); 
  }
 }	
