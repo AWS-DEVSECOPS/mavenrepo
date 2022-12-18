@@ -1,8 +1,6 @@
 FROM tomcat:latest
 
-LABEL maintainer="Nidhi Gupta"
-
-ADD /root/jenkins/workspace/walmart-freestyle/target/studentapp-2.5-SNAPSHOT.war /usr/local/tomcat/webapps/
+ADD /root/jenkins/workspace/infosys-pipeline-docker/target/studentapp-2.5-SNAPSHOT.war /usr/local/tomcat/webapps/
 
 EXPOSE 8080
 
