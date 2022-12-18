@@ -1,6 +1,6 @@
 FROM tomcat:latest
 
-COPY /root/jenkins/workspace/infosys-pipeline-docker/target/studentapp-2.5-SNAPSHOT.war /usr/local/tomcat/webapps/
+ADD studentapp-2.5-SNAPSHOT.war /usr/local/tomcat/webapps/
 
 EXPOSE 8080
 
