@@ -1,6 +1,6 @@
 FROM tomcat:latest
 
-ADD docker -H ssh://root@172.31.29.247 /root/jenkins/workspace/infosys-pipeline-docker/target/studentapp-2.5-SNAPSHOT.war /usr/local/tomcat/webapps/
+COPY /root/jenkins/workspace/infosys-pipeline-docker/target/studentapp-2.5-SNAPSHOT.war /usr/local/tomcat/webapps/
 
 EXPOSE 8080
 
