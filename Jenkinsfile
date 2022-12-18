@@ -46,7 +46,7 @@ sh "docker run -d -p 8003:8080 arjundevsecops/mavenrepo"
 
 	stage("Using curl") {
             steps {
-              sh 'curl  -s --retry-connrefused --retry 10 --retry-delay 6 http://34.219.135.162:8003/studentapp-2.5-SNAPSHOT/'
+              sh 'curl  -s --retry-connrefused --retry 10 --retry-delay 6 http://34.219.135.162:8003/studentapp-2.5-SNAPSHOT/ -o /dev/null -w "%{http_code}"'
             }
         }
 
