@@ -32,7 +32,7 @@ sh 'docker tag mavenrepo arjundevsecops/mavenrepo:latest'
 }
 stage('Publish image to Docker Hub') {
 steps {
-withDockerRegistry([ credentialsId: "9e0d7a93-0536-4ad3-9f59-1fd7f4245df7", url: "https://hub.docker.com" ]) {
+withDockerRegistry([ credentialsId: "6bbfe4d3-dd8b-4dea-8a21-beaf57ec5730", url: "https://hub.docker.com" ]) {
 sh  'docker push arjundevsecops/mavenrepo:latest'
 }
 }
