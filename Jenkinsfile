@@ -26,8 +26,11 @@ sh 'cp /root/jenkins/workspace/infosys-pipeline-docker/target/studentapp-2.5-SNA
 }
 stage('Docker Build and Tag') {
 steps {
+sh 'ls -al'
+/*
 sh 'docker build -t mavenrepo:latest .' 
 sh 'docker tag mavenrepo arjundevsecops/mavenrepo:latest'
+*/
 }
 }
 stage('Publish image to Docker Hub') {
@@ -37,7 +40,7 @@ sh  'docker push arjundevsecops/mavenrepo:latest'
 }
 }
 }	
-    
+/*   
 stage('Run Docker container on Jenkins Agent') {
  steps 
 {
@@ -50,7 +53,7 @@ steps {
 sh "docker -H ssh://root@172.31.6.20 run -d -p 8003:8080 arjundevsecops/mavenrepo"
 }
 }
-
+*/
 }
 }	
 	
