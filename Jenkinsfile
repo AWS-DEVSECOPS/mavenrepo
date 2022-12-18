@@ -46,7 +46,7 @@ sh "docker run -d -p 8003:8080 arjundevsecops/mavenrepo"
 
 	stage("Using curl") {
             steps {
-              sh 'curl --silent --fail "http://172.31.29.247:8003/studentapp-2.5-SNAPSHOT/" >/dev/null'
+              sh 'curl http://172.31.29.247:8003/studentapp-2.5-SNAPSHOT/'
             }
         }
 
