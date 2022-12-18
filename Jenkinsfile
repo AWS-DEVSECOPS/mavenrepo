@@ -20,7 +20,7 @@ stage ('Maven_Build'){
 steps {
 sh 'mvn package'
 sh 'rm -f /root/*war'
-sh '\cp  /root/jenkins/workspace/infosys-pipeline-docker/target/studentapp-2.5-SNAPSHOT.war /root/ '
+sh 'cp  /root/jenkins/workspace/infosys-pipeline-docker/target/studentapp-2.5-SNAPSHOT.war /root/ '
 }
 }
 stage('Docker Build and Tag') {
