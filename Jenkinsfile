@@ -44,17 +44,17 @@ sh "docker run -d -p 8003:8080 arjundevsecops/mavenrepo"
 }
 }
 
-	
-stage('Run Docker container on remote hosts') {
-steps {
- def get = new URL("http://172.31.29.247:8003/studentapp-2.5-SNAPSHOT/").openConnection();
- def getRC = get.getResponseCode();
- println(getRC);
- if(getRC.equals(200)) {
-    println(get.getInputStream().getText()); 
- }
-}
-}
+	stage("Using curl example") {
+            steps {
+                script {
+                    final String url = "http://172.31.29.247:8003/studentapp-2.5-SNAPSHOT/"
+
+                    final String response = sh(script: "curl -s $url", returnStdout: true).trim()
+
+                    echo response
+                }
+            }
+        }
 
  }
 }	
