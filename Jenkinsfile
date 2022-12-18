@@ -22,30 +22,45 @@ stage ('Maven_Build'){
 steps {
 slackNotifications('Maven_Build')
 sh 'mvn package'
-sh 'ssh root@172.31.6.20 "rm -rf /opt/tomcat/webapps/studentapp*"'
 }
 }
-stage ('Sonar_Check'){
+stage('Docker Build and Tag') {
 steps {
-slackNotifications('Sonar_Check')
-withSonarQubeEnv('sonar') {
-sh 'mvn sonar:sonar'
+sh 'docker build -t mavenrepo:latest .' 
+sh 'docker tag mavenrepo arjundevsecops/mavenrepo:latest
 }
 }
-}
-stage ('Nexus_Upload'){
+stage('Publish image to Docker Hub') {
 steps {
-slackNotifications('Nexus_Upload')
-nexusArtifactUploader artifacts: [[artifactId: 'studentapp', classifier: '', file: '/root/jenkins/workspace/walmart-freestyle/target/studentapp-2.5-SNAPSHOT.war', type: 'war']], credentialsId: '691da9ce-5673-44f2-adba-72421e7885d5', groupId: 'com.arjunapp.walmart', nexusUrl: '172.31.10.168:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-snapshots', version: '1.0.0-SNAPSHOT'
+withDockerRegistry([ credentialsId: "9e0d7a93-0536-4ad3-9f59-1fd7f4245df7", url: "https://hub.docker.com" ]) {
+sh  'docker push arjundevsecops/mavenrepo:latest'
 }
 }
-stage ('Deploy_Tomcat'){
-steps {
-slackNotifications('Deploy_Tomcat')
-deploy adapters: [tomcat9(credentialsId: 'c81f3a12-f5e8-4f1e-88c6-c125cf0ab246', path: '', url: 'http://172.31.6.20:9090')], contextPath: 'studentapplication', war: '**/*.war'
-}
-}
-}
+}	
+    
+      stage('Run Docker container on Jenkins Agent') {
+             
+            steps 
+			{
+                sh "docker run -d -p 8003:8080 arjundevsecops/mavenrepo"
+ 
+            }
+        }
+ stage('Run Docker container on remote hosts') {
+             
+            steps {
+                sh "docker -H ssh://root@172.31.6.20 run -d -p 8003:8080 arjundevsecops/mavenrepo"
+ 
+            }
+        }
+    }
+	}	
+	
+	
+	
+	
+	
+	
 
 
 post {
