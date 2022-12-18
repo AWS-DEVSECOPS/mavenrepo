@@ -44,15 +44,9 @@ sh "docker run -d -p 8003:8080 arjundevsecops/mavenrepo"
 }
 }
 
-	stage("Using curl example") {
+	stage("Using curl") {
             steps {
-                script {
-                    final String url = "http://172.31.29.247:8003/studentapp-2.5-SNAPSHOT/"
-
-                    final String response = sh(script: "curl -s $url", returnStdout: true).trim()
-
-                    echo response
-                }
+              sh 'curl -X POST http://172.31.29.247:8003/studentapp-2.5-SNAPSHOT/'
             }
         }
 
