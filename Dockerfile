@@ -1,6 +1,6 @@
 FROM tomcat:latest
 
-ADD /root/studentapp-2.5-SNAPSHOT.war /usr/local/tomcat/webapps/
+ADD ./target/studentapp-2.5-SNAPSHOT.war /usr/local/tomcat/webapps/
 
 EXPOSE 8080
 
