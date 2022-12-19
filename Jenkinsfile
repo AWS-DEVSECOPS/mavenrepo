@@ -18,10 +18,7 @@ checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], user
 }
 stage ('Maven_Build'){
 steps {
-sh 'mvn package'
-sh 'docker rm -f $(docker ps -q) 2> /dev/null '
-sh 'docker rmi -f $(docker images -aq)  2> /dev/null'
-
+sh 'mvn clean package'
 }
 }
 stage('Docker Build and Tag') {
