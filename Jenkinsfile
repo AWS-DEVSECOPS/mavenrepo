@@ -28,6 +28,7 @@ sh 'docker build -t mavenrepo:latest .'
 sh 'docker tag mavenrepo arjundevsecops/mavenrepo:latest'
 }
 }
+
 stage('Publish image to Docker Hub') {
 steps {
         withDockerRegistry([ credentialsId: "87447f6b-99e0-46fa-9f40-c7bcc80de2c3", url: "" ]) { 
@@ -45,7 +46,7 @@ sh "docker run -d -p 8003:8080 arjundevsecops/mavenrepo"
 
 		stage("aplication status cURL") {
             steps {
-              sh 'curl  -s --retry-connrefused --retry 10 --retry-delay 6 http://34.219.135.162:8003/studentapp-2.5-SNAPSHOT/ -o /dev/null -w "HTTP CODE: %{http_code}"'
+              sh 'curl  -s --retry-connrefused --retry 10 --retry-delay 6 http://172.31.29.247:8003/studentapp-2.5-SNAPSHOT/ -o /dev/null -w "HTTP CODE: %{http_code}"'
             }
         }
 
