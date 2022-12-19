@@ -48,7 +48,7 @@ sh "docker run -d -p 8003:8080 arjundevsecops/mavenrepo"
             steps {
 		sh '''
             #!/bin/bash
-            response=$(curl  -s --retry-connrefused --retry 10 --retry-delay 6 http://172.31.29.247:8003/studentapp-2.5-SNAPSHOT/ -o /dev/null -w "HTTP CODE: %{http_code}")
+            response=$(curl  -s --retry-connrefused --retry 10 --retry-delay 6 http://172.31.29.247:8003/studentapp-2.5-SNAPSHOT/ -o /dev/null -w "%{http_code}")
 		if [ "$response" != "200" ]
 		then
 		 exit 1
