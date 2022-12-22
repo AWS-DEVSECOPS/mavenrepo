@@ -61,7 +61,20 @@ sh "docker run -d -p 8003:8080 arjundevsecops/mavenrepo"
                     '''    
             }
         }
+ stage('Deploy to k8s'){
+            steps{
+                script{
+			kubernetesDeploy (configs: 'deploykube.yaml',kubeconfigId: 'kubectlconfig')
+                }
+            }
+        }
+	
+	
+	
+	
+	
+	
 
-
+	
  }
 }	
