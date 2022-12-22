@@ -47,7 +47,7 @@ sh 'docker rm -f $(docker ps -q)'
 stage('Run Docker container on Jenkins Agent') {
  steps 
 {
-sh "docker run -d -p 8003:8080 arjundevsecops/mavenrepo"
+sh "docker run -d -p 8003:8080 arjundevsecops/mavenrepo:${BUILD_NUMBER}"
 }
 }
 
