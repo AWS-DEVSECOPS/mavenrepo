@@ -1,7 +1,7 @@
 pipeline{
 agent {label 'staging'}
 tools { 
-        maven 'localmaven'
+        maven 'mavenhome'
 }
 triggers {
   pollSCM '* * * * *'
