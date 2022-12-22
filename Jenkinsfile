@@ -13,7 +13,7 @@ buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '3', 
 stages{
 stage ('git_checkout'){
 steps {
-checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'c24dc095-aa7d-471c-9968-8ea5e18e2f25', url: 'https://github.com/AWS-DEVSECOPS/mavenrepo.git']]])
+checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'githubtoken', url: 'https://github.com/AWS-DEVSECOPS/mavenrepo.git']]])	
 }
 }
 stage ('Maven_Build'){
@@ -31,7 +31,7 @@ sh 'docker tag mavenrepo arjundevsecops/mavenrepo:latest'
 
 stage('Publish image to Docker Hub') {
 steps {
-        withDockerRegistry([ credentialsId: "87447f6b-99e0-46fa-9f40-c7bcc80de2c3", url: "" ]) { 
+        withDockerRegistry([ credentialsId: "dockerhubtoken", url: "" ]) { 
 sh  'docker push arjundevsecops/mavenrepo:latest'
 }
 }
