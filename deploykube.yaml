@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mystudentapp-deployment
+  labels:
+     app: mystudentapp
+     type: front-end
+spec:
+  template:
+     metadata:
+       name: mystudentapp-pod
+       labels:
+         app: mystudentapp
+         type: front-end
+     spec:
+         containers:
+           - name: mavenrepo
+             image: "arjundevsecops/mavenrepo:latest"
+  replicas: 1
+  selector:
+    matchLabels:
+      type: front-end
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mystudentapp-service
+spec:
+  selector:
+    app: mystudentapp
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      targetPort: 3000
+      port: 80
+      nodePort: 30000
