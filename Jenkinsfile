@@ -2,7 +2,6 @@ pipeline{
 agent {label 'staging'}
 tools { 
         maven 'localmaven'
-	git 'git'
 }
 triggers {
   pollSCM '* * * * *'
