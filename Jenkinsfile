@@ -25,7 +25,7 @@ stage('Docker Build and Tag') {
 steps {
 
 sh 'docker build -t mavenrepo .' 
-sh 'docker tag mavenrepo arjundevsecops/mavenrepo'
+sh 'docker tag mavenrepo arjundevsecops/mavenrepo:${BUILD_NUMBER}'
 }
 }
 
