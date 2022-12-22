@@ -24,7 +24,7 @@ sh 'mvn clean package'
 stage('Docker Build and Tag') {
 steps {
 
-sh 'docker build -t mavenrepo:${env.BUILD_NUMBER} .' 
+sh 'docker build -t mavenrepo .' 
 sh 'docker tag mavenrepo arjundevsecops/mavenrepo:${env.BUILD_NUMBER}'
 }
 }
