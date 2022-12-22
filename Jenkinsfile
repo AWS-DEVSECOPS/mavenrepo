@@ -25,14 +25,14 @@ stage('Docker Build and Tag') {
 steps {
 
 sh 'docker build -t mavenrepo .' 
-sh 'docker tag mavenrepo arjundevsecops/mavenrepo:${env.BUILD_NUMBER}'
+sh 'docker tag mavenrepo arjundevsecops/mavenrepo'
 }
 }
 
 stage('Publish image to Docker Hub') {
 steps {
         withDockerRegistry([ credentialsId: "dockerhubtoken", url: "" ]) { 
-sh  'docker push arjundevsecops/mavenrepo:${env.BUILD_NUMBER}'
+sh  'docker push arjundevsecops/mavenrepo:${BUILD_NUMBER}'
 }
 }
 }
