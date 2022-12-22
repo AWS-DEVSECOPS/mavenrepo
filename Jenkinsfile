@@ -36,6 +36,7 @@ sh  'docker push arjundevsecops/mavenrepo:${BUILD_NUMBER}'
 }
 }
 }
+/*
 stage ('delete running container'){
 steps {
 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
@@ -63,7 +64,7 @@ sh "docker run -d -p 8003:8080 arjundevsecops/mavenrepo:${BUILD_NUMBER}"
                     '''    
             }
         }
-/*	
+	
  stage('Deploy to k8s'){
             steps{
                 script{
