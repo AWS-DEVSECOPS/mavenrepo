@@ -38,12 +38,9 @@ sh  'docker push arjundevsecops/mavenrepo:${BUILD_NUMBER}'
 }
 stage ('delete running container'){
 steps {
+catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
 sh 'docker rm -f $(docker ps -q)'
-	post {
-    always {
-      cleanWs()
-    }
-  }
+}
 }
 }
 
