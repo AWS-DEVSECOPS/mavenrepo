@@ -73,7 +73,11 @@ sh "docker run -d -p 8003:8080 arjundevsecops/mavenrepo:${BUILD_NUMBER}"
         }
 */	
 	
-	
+stage('Trigger ManifestUpdate') {
+                echo "triggering updatemanifestjob"
+                build job: 'updatemanifest', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
+        }
+}	
 	
 	
 	
