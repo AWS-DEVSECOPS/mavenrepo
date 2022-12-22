@@ -35,7 +35,12 @@ steps {
 sh  'docker push arjundevsecops/mavenrepo:latest'
 }
 }
-}	
+}
+stage ('delete running container'){
+steps {
+sh 'docker rm -f $(docker ps -q)'
+}
+}
 
 stage('Run Docker container on Jenkins Agent') {
  steps 
