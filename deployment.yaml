@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: studentapp
+  name: studentapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: studentapp
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: studentapp
+    spec:
+      containers:
+      - image: arjundevsecops/mavenrepo:44
+        name: studentapp
+        resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lb-service
+  labels:
+    app: lb-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 5000
+  selector:
+    app: studentapp
